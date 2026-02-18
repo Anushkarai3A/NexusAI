@@ -5,6 +5,8 @@
 ![Platform Status](https://img.shields.io/badge/status-active-success)
 ![License](https://img.shields.io/badge/license-MIT-blue)
 
+[**🚀 Live Demo**](https://nexus-ai-zeta-gilt.vercel.app/)
+
 ## 🚀 What is This?
 
 A comprehensive self-practice platform designed for students and professionals preparing for technical interviews. Combine LeetCode-style coding challenges with AI-powered mock interviews to build confidence and improve your skills.
