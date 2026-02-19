@@ -19,7 +19,7 @@ const Projects = () => {
     useEffect(() => {
         const fetchProjects = async () => {
             try {
-                const res = await axios.get('http://localhost:5000/api/projects');
+                const res = await axios.get('/api/projects');
                 setProjects(res.data);
             } catch (error) {
                 console.error('Error fetching projects:', error);
@@ -41,7 +41,7 @@ const Projects = () => {
                 techStack: newProject.techStack.split(',').map(s => s.trim()),
                 owner: user?.id || user?._id
             };
-            const res = await axios.post('http://localhost:5000/api/projects', projectData);
+            const res = await axios.post('/api/projects', projectData);
             setProjects([res.data, ...projects]);
             setShowModal(false);
             setNewProject({ title: '', description: '', techStack: '', githubLink: '', liveLink: '' });

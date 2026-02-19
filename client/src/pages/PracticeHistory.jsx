@@ -11,7 +11,7 @@ export default function PracticeHistory() {
     useEffect(() => {
         const fetchSessions = async () => {
             try {
-                const res = await axios.get('http://localhost:5000/api/interviews');
+                const res = await axios.get('/api/interviews');
                 setSessions(res.data);
             } catch (error) {
                 console.error('Error fetching sessions:', error);

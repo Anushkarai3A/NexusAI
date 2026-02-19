@@ -22,7 +22,7 @@ export default function InterviewRoom() {
     useEffect(() => {
         const fetchProblem = async () => {
             try {
-                const res = await axios.get(`http://localhost:5000/api/problems/${id}`);
+                const res = await axios.get(`/api/problems/${id}`);
                 setProblem(res.data);
             } catch (error) {
                 console.error('Error fetching problem:', error);

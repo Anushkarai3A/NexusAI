@@ -27,7 +27,7 @@ export default function Profile() {
     useEffect(() => {
         const fetchStats = async () => {
             try {
-                const res = await axios.get('http://localhost:5000/api/interviews');
+                const res = await axios.get('/api/interviews');
                 const sessions = res.data;
                 const total = sessions.length;
                 const avg = total > 0 ? Math.round(sessions.reduce((s, x) => s + (x.score?.total || 0), 0) / total) : 0;

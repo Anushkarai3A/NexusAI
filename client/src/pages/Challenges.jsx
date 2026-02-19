@@ -13,7 +13,7 @@ export default function Challenges() {
     useEffect(() => {
         const fetchProblems = async () => {
             try {
-                const res = await axios.get('http://localhost:5000/api/problems');
+                const res = await axios.get('/api/problems');
                 setProblems(res.data);
             } catch (error) {
                 console.error('Error fetching problems:', error);

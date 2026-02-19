@@ -1,4 +1,8 @@
 import { BrowserRouter as Router, Routes, Route, Navigate, Link } from 'react-router-dom';
+import axios from 'axios';
+
+// Set base URL for all axios requests
+axios.defaults.baseURL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { ThemeProvider } from './context/ThemeContext';
 import Login from './pages/Login';

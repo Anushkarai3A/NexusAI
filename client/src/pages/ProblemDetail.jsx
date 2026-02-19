@@ -33,7 +33,7 @@ export default function ProblemDetail() {
     useEffect(() => {
         const fetchProblem = async () => {
             try {
-                const res = await axios.get(`http://localhost:5000/api/problems/${id}`);
+                const res = await axios.get(`/api/problems/${id}`);
                 setProblem(res.data);
                 setCode(res.data.starterCode || '// Write your code here');
             } catch (error) {
@@ -54,7 +54,7 @@ export default function ProblemDetail() {
         setIsRunning(true);
         setOutput('Running...');
         try {
-            const res = await axios.post('http://localhost:5000/api/problems/run', {
+            const res = await axios.post('/api/problems/run', {
                 code,
                 problemId: id,
                 language: 'javascript'
@@ -99,7 +99,7 @@ export default function ProblemDetail() {
             // First run the code to get latest results
             const outputValue = await handleRun();
 
-            await axios.post('http://localhost:5000/api/interviews/submit', {
+            await axios.post('/api/interviews/submit', {
                 candidateId: user?.id || user?._id,
                 problemId: id,
                 code,

@@ -19,8 +19,8 @@ export default function ProblemList() {
         const fetchData = async () => {
             try {
                 const [problemsRes, sessionsRes] = await Promise.all([
-                    axios.get('http://localhost:5000/api/problems'),
-                    axios.get('http://localhost:5000/api/interviews')
+                    axios.get('/api/problems'),
+                    axios.get('/api/interviews')
                 ]);
                 setProblems(problemsRes.data);
                 setSessions(sessionsRes.data);
@@ -38,7 +38,7 @@ export default function ProblemList() {
 
     const handleStatusUpdate = async (sessionId, newStatus) => {
         try {
-            const res = await axios.patch(`http://localhost:5000/api/interviews/${sessionId}/status`, { status: newStatus });
+            const res = await axios.patch(`/api/interviews/${sessionId}/status`, { status: newStatus });
             setSessions(sessions.map(s => s._id === sessionId ? res.data : s));
             if (selectedSession?._id === sessionId) {
                 setSelectedSession(res.data);
