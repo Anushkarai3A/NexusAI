@@ -37,6 +37,10 @@ app.get('/health', (req, res) => {
 // Database Connection and Server Start
 const startServer = async () => {
     try {
+        if (!process.env.MONGO_URI) {
+            throw new Error('MONGO_URI environment variable is not defined');
+        }
+
         await mongoose.connect(process.env.MONGO_URI, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
@@ -47,7 +51,9 @@ const startServer = async () => {
             console.log(`Server running on port ${PORT}`);
         });
     } catch (err) {
-        console.error('MongoDB connection error:', err);
+        console.error('SERVER STARTUP ERROR:', err.message);
+        // Log full error for debugging if needed, but message is usually enough
+        console.error(err);
         process.exit(1);
     }
 };
