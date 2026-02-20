@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import api from '../api/axios';
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import AIInterviewer from '../components/AIInterviewer';
@@ -22,7 +22,7 @@ export default function InterviewRoom() {
     useEffect(() => {
         const fetchProblem = async () => {
             try {
-                const res = await axios.get(`/api/problems/${id}`);
+                const res = await api.get(`/problems/${id}`);
                 setProblem(res.data);
             } catch (error) {
                 console.error('Error fetching problem:', error);

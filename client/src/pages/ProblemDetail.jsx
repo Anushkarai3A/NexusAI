@@ -1,5 +1,5 @@
 import { useParams, Link, useLocation } from 'react-router-dom';
-import axios from 'axios';
+import api from '../api/axios';
 import React, { useState, useEffect } from 'react';
 import CodeEditor from '../components/CodeEditor';
 import { useAuth } from '../context/AuthContext';
@@ -33,7 +33,7 @@ export default function ProblemDetail() {
     useEffect(() => {
         const fetchProblem = async () => {
             try {
-                const res = await axios.get(`/api/problems/${id}`);
+                const res = await api.get(`/problems/${id}`);
                 setProblem(res.data);
                 setCode(res.data.starterCode || '// Write your code here');
             } catch (error) {
@@ -54,7 +54,7 @@ export default function ProblemDetail() {
         setIsRunning(true);
         setOutput('Running...');
         try {
-            const res = await axios.post('/api/problems/run', {
+            const res = await api.post('/problems/run', {
                 code,
                 problemId: id,
                 language: 'javascript'
@@ -99,7 +99,7 @@ export default function ProblemDetail() {
             // First run the code to get latest results
             const outputValue = await handleRun();
 
-            await axios.post('/api/interviews/submit', {
+            await api.post('/interviews/submit', {
                 candidateId: user?.id || user?._id,
                 problemId: id,
                 code,

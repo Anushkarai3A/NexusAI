@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../api/axios';
 import { useAuth } from '../context/AuthContext';
 
 const Projects = () => {
@@ -19,7 +19,7 @@ const Projects = () => {
     useEffect(() => {
         const fetchProjects = async () => {
             try {
-                const res = await axios.get('/api/projects');
+                const res = await api.get('/projects');
                 setProjects(res.data);
             } catch (error) {
                 console.error('Error fetching projects:', error);
@@ -41,7 +41,7 @@ const Projects = () => {
                 techStack: newProject.techStack.split(',').map(s => s.trim()),
                 owner: user?.id || user?._id
             };
-            const res = await axios.post('/api/projects', projectData);
+            const res = await api.post('/projects', projectData);
             setProjects([res.data, ...projects]);
             setShowModal(false);
             setNewProject({ title: '', description: '', techStack: '', githubLink: '', liveLink: '' });

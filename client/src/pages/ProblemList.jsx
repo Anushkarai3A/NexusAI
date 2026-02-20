@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../api/axios';
 import { Link } from 'react-router-dom';
 import CandidateCard from '../components/CandidateCard';
 import CircularScore from '../components/CircularScore';
@@ -19,8 +19,8 @@ export default function ProblemList() {
         const fetchData = async () => {
             try {
                 const [problemsRes, sessionsRes] = await Promise.all([
-                    axios.get('/api/problems'),
-                    axios.get('/api/interviews')
+                    api.get('/problems'),
+                    api.get('/interviews')
                 ]);
                 setProblems(problemsRes.data);
                 setSessions(sessionsRes.data);

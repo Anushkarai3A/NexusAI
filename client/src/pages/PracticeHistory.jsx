@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../api/axios';
 import { Link } from 'react-router-dom';
 import { ClipboardList, Search } from 'lucide-react';
 
@@ -11,7 +11,7 @@ export default function PracticeHistory() {
     useEffect(() => {
         const fetchSessions = async () => {
             try {
-                const res = await axios.get('/api/interviews');
+                const res = await api.get('/interviews');
                 setSessions(res.data);
             } catch (error) {
                 console.error('Error fetching sessions:', error);
