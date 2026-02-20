@@ -8,6 +8,7 @@ import authRoutes from './routes/auth.js';
 import problemRoutes from './routes/problems.js';
 import interviewRoutes from './routes/interviews.js';
 import projectRoutes from './routes/projects.js';
+import seedRoutes from './routes/seed.js';
 
 dotenv.config();
 
@@ -24,6 +25,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/problems', problemRoutes);
 app.use('/api/interviews', interviewRoutes);
 app.use('/api/projects', projectRoutes);
+app.use('/api/seed', seedRoutes);
 
 // Health Check
 app.get('/', (req, res) => {
