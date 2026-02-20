@@ -3,14 +3,8 @@ import Problem from '../models/Problem.js';
 
 const router = express.Router();
 
-// One-time seed route — protected by a secret key
-// Call: GET /api/seed?key=SEED_SECRET
+// Seed route — call GET /api/seed to populate the database
 router.get('/', async (req, res) => {
-    const { key } = req.query;
-
-    if (key !== process.env.SEED_SECRET) {
-        return res.status(403).json({ error: 'Forbidden. Invalid seed key.' });
-    }
 
     const problems = [
         // 1️⃣ PREFIX SUM (8 problems)
