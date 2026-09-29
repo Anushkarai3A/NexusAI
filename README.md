@@ -1,43 +1,43 @@
-# 🎯 AI Interview Prep Platform
+#  AI Interview Prep Platform
 
 **Master Your Interview Skills** - Practice coding challenges and mock AI interviews to ace your placement season.
 
 ![Platform Status](https://img.shields.io/badge/status-active-success)
 ![License](https://img.shields.io/badge/license-MIT-blue)
 
-[**🚀 Live Demo**](https://nexus-ai-zeta-gilt.vercel.app/)
+[** Live Demo**](https://nexus-ai-zeta-gilt.vercel.app/)
 
-## 🚀 What is This?
+##  What is This?
 
 A comprehensive self-practice platform designed for students and professionals preparing for technical interviews. Combine LeetCode-style coding challenges with AI-powered mock interviews to build confidence and improve your skills.
 
-## ✨ Features
+##  Features
 
-### 🎤 AI Mock Interviews
+###  AI Mock Interviews
 - **Real-time AI interviewer** with speech recognition and synthesis
 - **Personalized questions** based on your experience level
 - **Instant feedback** on communication, technical knowledge, and soft skills
 - **Score breakdown** across multiple dimensions (Technical, Soft Skills, Clarity, Problem Solving)
 
-### 💻 Coding Challenges
+###  Coding Challenges
 - **Curated problem set** covering Arrays, Strings, Dynamic Programming, and more
 - **Live code execution** with multiple test cases
 - **Difficulty levels** from Easy to Hard
 - **Real-time feedback** on code correctness
 
-### 📊 Progress Tracking
+###  Progress Tracking
 - **Session history** with detailed performance metrics
 - **Improvement trends** showing your growth over time
 - **Practice streaks** to keep you motivated
 - **Average score tracking** across all sessions
 
-### 🎨 Modern UI/UX
+###  Modern UI/UX
 - **Dark mode** support for comfortable practice sessions
 - **Responsive design** works on desktop and tablet
 - **Real-time video feed** during interviews
 - **Smooth animations** and intuitive navigation
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 **Frontend:**
 - React 18 with Vite
@@ -52,7 +52,7 @@ A comprehensive self-practice platform designed for students and professionals p
 - JWT authentication
 - Local code execution engine
 
-## 📦 Installation
+##  Installation
 
 ### Prerequisites
 - Node.js 18+ and npm
@@ -108,7 +108,7 @@ npm run dev
 - Frontend: `http://localhost:5173`
 - Backend: `http://localhost:5000`
 
-## 📖 Usage
+##  Usage
 
 1. **Register/Login** to create your account
 2. **Browse challenges** on the Practice Dashboard
@@ -116,7 +116,7 @@ npm run dev
 4. **Solve coding problems** with instant feedback
 5. **Track your progress** and see your improvement over time
 
-## 🎯 Roadmap
+##  Roadmap
 
 - [ ] Add more coding problems (100+ problems)
 - [ ] Implement hints and solutions for learning
@@ -125,15 +125,15 @@ npm run dev
 - [ ] Mobile app support
 - [ ] Video recording of practice sessions
 
-## 📄 License
+##  License
 
 MIT License - feel free to use this for your own interview prep!
 
-## 🤝 Contributing
+##  Contributing
 
 Contributions are welcome! Feel free to open issues or submit pull requests.
 
-## 💡 Tips for Best Results
+##  Tips for Best Results
 
 - **Practice regularly** - Consistency is key to improvement
 - **Review your sessions** - Watch your progress stats and identify weak areas
