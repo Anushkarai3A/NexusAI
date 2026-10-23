@@ -1,63 +1,17 @@
 import express from 'express';
-import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
-
-// Import Routes
+import { initDb, pool } from './db.js';
 import authRoutes from './routes/auth.js';
 import problemRoutes from './routes/problems.js';
 import interviewRoutes from './routes/interviews.js';
 import projectRoutes from './routes/projects.js';
 import seedRoutes from './routes/seed.js';
-
 dotenv.config();
-
-const app = express();
-const PORT = process.env.PORT || 5000;
-
-
-// Middleware
-app.use(cors());
-app.use(express.json());
-
-// Route Middleware
-app.use('/api/auth', authRoutes);
-app.use('/api/problems', problemRoutes);
-app.use('/api/interviews', interviewRoutes);
-app.use('/api/projects', projectRoutes);
-app.use('/api/seed', seedRoutes);
-
-// Health Check
-app.get('/', (req, res) => {
-    res.send('API is running...');
-});
-
-app.get('/health', (req, res) => {
-    res.json({ status: 'ok', message: 'Server is running', timestamp: new Date().toISOString() });
-});
-
-// Database Connection and Server Start
-const startServer = async () => {
-    try {
-        if (!process.env.MONGO_URI) {
-            throw new Error('MONGO_URI environment variable is not defined');
-        }
-
-        await mongoose.connect(process.env.MONGO_URI, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        });
-        console.log('Connected to MongoDB');
-
-        app.listen(PORT, () => {
-            console.log(`Server running on port ${PORT}`);
-        });
-    } catch (err) {
-        console.error('SERVER STARTUP ERROR:', err.message);
-        // Log full error for debugging if needed, but message is usually enough
-        console.error(err);
-        process.exit(1);
-    }
-};
-
-startServer();
+const app=express(); const PORT=process.env.PORT||5000;
+app.use(cors()); app.use(express.json());
+app.use('/api/auth',authRoutes); app.use('/api/problems',problemRoutes); app.use('/api/interviews',interviewRoutes); app.use('/api/projects',projectRoutes); app.use('/api/seed',seedRoutes);
+app.get('/',(req,res)=>res.send('NexusAI API is running with PostgreSQL.'));
+app.get('/health',async(req,res)=>{try{await pool.query('SELECT 1');res.json({status:'ok',database:'connected',timestamp:new Date().toISOString()});}catch(e){res.status(503).json({status:'error',database:'disconnected'});}});
+const start=async()=>{try{await initDb();await pool.query('SELECT 1');app.listen(PORT,'0.0.0.0',()=>console.log(`Server running on port ${PORT}`));}catch(e){console.error('SERVER STARTUP ERROR:',e);process.exit(1);}};
+start();

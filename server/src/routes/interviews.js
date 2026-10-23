@@ -7,9 +7,7 @@ const router = express.Router();
 // Get all interview sessions (for dashboard)
 router.get('/', async (req, res) => {
     try {
-        const sessions = await InterviewSession.find()
-            .populate('candidate', 'username email avatar')
-            .populate('problem', 'title');
+        const sessions = await InterviewSession.find();
         res.json(sessions);
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -22,7 +20,7 @@ router.post('/submit', async (req, res) => {
 
     try {
         // AI Logic Simulation (In reality, this would call Gemini/OpenAI)
-        const passed = outputValue.includes('✅');
+        const passed = String(outputValue || '').includes('✅');
         const totalScore = passed ? Math.floor(Math.random() * 20) + 80 : Math.floor(Math.random() * 40) + 40;
 
         const aiAnalysis = {
@@ -63,7 +61,9 @@ router.post('/submit', async (req, res) => {
 router.patch('/:id/status', async (req, res) => {
     const { status } = req.body;
     try {
+        if (!['Completed', 'Pending', 'Rejected', 'Approved'].includes(status)) return res.status(400).json({ error: 'Invalid status' });
         const session = await InterviewSession.findByIdAndUpdate(req.params.id, { status }, { new: true });
+        if (!session) return res.status(404).json({ error: 'Interview session not found' });
         res.json(session);
     } catch (error) {
         res.status(500).json({ error: error.message });

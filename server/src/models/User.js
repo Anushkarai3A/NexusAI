@@ -1,24 +1,8 @@
-import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
-
-const userSchema = new mongoose.Schema({
-    username: { type: String, required: true, unique: true },
-    email: { type: String, required: true, unique: true },
-    password: { type: String, required: true },
-    role: { type: String, enum: ['candidate', 'admin'], default: 'candidate' },
-    resume_url: { type: String },
-}, { timestamps: true });
-
-// Hash password before saving
-userSchema.pre('save', async function (next) {
-    if (!this.isModified('password')) return next();
-    this.password = await bcrypt.hash(this.password, 10);
-    next();
-});
-
-// Method to compare passwords
-userSchema.methods.comparePassword = async function (candidatePassword) {
-    return await bcrypt.compare(candidatePassword, this.password);
-};
-
-export default mongoose.model('User', userSchema);
+import { pool, asApi } from '../db.js';
+export default class User {
+ constructor(data={}) { Object.assign(this,data); }
+ async save() { const hash = await bcrypt.hash(this.password,10); const r=await pool.query('INSERT INTO users(username,email,password,role,resume_url) VALUES($1,$2,$3,$4,$5) RETURNING *',[this.username,this.email,hash,this.role||'candidate',this.resume_url||null]); Object.assign(this,asApi(r.rows[0])); return this; }
+ async comparePassword(p) { return bcrypt.compare(p,this.password); }
+ static async findOne(q={}) { const key=q.email?'email':q.username?'username':null; if(!key)return null; const r=await pool.query(`SELECT * FROM users WHERE ${key}=$1 LIMIT 1`,[q[key]]); if(!r.rowCount)return null; const u=asApi(r.rows[0]); const instance=new User(u); instance._id=u.id; return instance; }
+}
