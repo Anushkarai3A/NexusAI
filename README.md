@@ -5,7 +5,7 @@
 ![Platform Status](https://img.shields.io/badge/status-active-success)
 ![License](https://img.shields.io/badge/license-MIT-blue)
 
-[** Live Demo**](https://nexus-ai-zeta-gilt.vercel.app/)
+[Live Demo](https://nexus-ai-zeta-gilt.vercel.app/)
 
 ##  What is This?
 
@@ -48,15 +48,19 @@ A comprehensive self-practice platform designed for students and professionals p
 
 **Backend:**
 - Node.js + Express
-- MongoDB for data persistence
+- PostgreSQL for relational data persistence
 - JWT authentication
 - Local code execution engine
+
+  **Database:**
+  NexusAI uses PostgreSQL for persistent application data, including user accounts, coding problems, and interview sessions. The backend connects to PostgreSQL through
+  a centralized database module.
 
 ##  Installation
 
 ### Prerequisites
 - Node.js 18+ and npm
-- MongoDB instance (local or Atlas)
+- PostgreSQL database
 
 ### Setup
 
@@ -81,7 +85,7 @@ npm install
 
 Create `server/.env`:
 ```env
-MONGO_URI=your_mongodb_connection_string
+DATABASE_URL=your_postgresql_connection_string
 JWT_SECRET=your_jwt_secret_key
 PORT=5000
 ```
