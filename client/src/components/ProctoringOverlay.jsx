@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { AlertTriangle } from 'lucide-react';
 import Webcam from 'react-webcam';
-import * as faceMesh from '@mediapipe/face_mesh';
+import { FaceMesh } from '@mediapipe/face_mesh';
 import * as camUtils from '@mediapipe/camera_utils';
 import * as tf from '@tensorflow/tfjs';
 import * as cocoSsd from '@tensorflow-models/coco-ssd';
@@ -29,8 +29,9 @@ const ProctoringOverlay = ({ onViolation }) => {
     useEffect(() => {
         if (!isProctoring || !model) return;
 
-        const faceMeshModel = new faceMesh.FaceMesh({
-            locateFile: (file) => `https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/${file}`,
+        const faceMeshModel = new FaceMesh({
+            locateFile: (file) =>
+                `https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/${file}`,
         });
 
         faceMeshModel.setOptions({
